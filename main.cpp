@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QApplication>
+#include "button.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,10 +17,7 @@ int main(int argc, char *argv[])
     label->setAlignment(Qt::AlignCenter);
     label->setGeometry(10, 10, 80, 30);
 
-    auto button = new QPushButton("Exit", &window);
-    button->setGeometry(10, 50, 80, 30);
-    
-    QObject::connect(button, &QPushButton::clicked, &a, &QApplication::quit);
+    Button button = new Button(&window);
 
     window.show();
 

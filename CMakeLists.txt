@@ -11,6 +11,7 @@ qt_add_executable(exit)
 target_sources(exit
     PRIVATE
         main.cpp
+        button.h button.cpp
 
     PUBLIC
 
