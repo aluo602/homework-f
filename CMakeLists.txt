@@ -1,61 +1,31 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.25)
 
-project(gotocell VERSION 0.1 LANGUAGES CXX)
+project(qtdev VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+qt_standard_project_setup()
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+qt_add_executable(gotocell)
 
-set(PROJECT_SOURCES
+target_sources(gotocell
+    PRIVATE
         main.cpp
-        gotocelldialog.cpp
-        gotocelldialog.h
-        gotocelldialog.ui
+        gotocell.ui
+
+    PUBLIC
+
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(gotocell
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
+target_compile_features(gotocell PRIVATE cxx_std_20)
+
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET gotocell APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET qtdev APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
-    if(ANDROID)
-        add_library(gotocell SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(gotocell
-            ${PROJECT_SOURCES}
-        )
-    endif()
-endif()
 
-target_link_libraries(gotocell PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-set_target_properties(gotocell PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
+target_link_libraries(gotocell
+    PRIVATE
+        Qt6::Widgets
 )
-
-install(TARGETS gotocell
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(gotocell)
-endif()
