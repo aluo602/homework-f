@@ -6,6 +6,7 @@
 #include <QWidget>
 class Label;
 class Button;
+class Box;
 
 class Window : public QWidget
 {
@@ -20,5 +21,6 @@ public:
 private:
     Label *_label;
     Button *_button;
+    Box *_box;
 };
 #endif // WINDOW_H

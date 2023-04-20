@@ -3,21 +3,26 @@
 #include "window.h"
 #include "label.h"
 #include "button.h"
+#include "box.h"
 #include <QtDebug>
 #include <QMouseEvent>
 
 Window::Window(QWidget *parent)
     : QWidget(parent)
 {
-    setGeometry(800,400,200,150);
+    setGeometry(300,300,200,200);
 
     _label = new Label{this};
     _label->setText("event handing");
-    _label->setGeometry(20, 20, 120, 80);
+    _label->setGeometry(20, 20, 160, 110);
 
     _button = new Button{_label};
     _button->setText("OK");
-    _button->setGeometry(40, 50, 80, 30);
+    _button->setGeometry(70, 80, 80, 30);
+
+    _box = new Box{_label};
+    _box->setText("I have read this.");
+    _box->setGeometry(0, 55, 150, 30);
 }
 
 //void Window::mouseMoveEvent(QMouseEvent *event)

@@ -16,6 +16,7 @@ target_sources(eventhandling
         label.cpp
         label.h
         button.h button.cpp
+        box.h box.cpp
     PUBLIC
 
 )
