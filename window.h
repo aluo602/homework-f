@@ -4,7 +4,8 @@
 #define WINDOW_H
 
 #include <QWidget>
-#include <QLabel>
+class Label;
+class Button;
 
 class Window : public QWidget
 {
@@ -12,11 +13,12 @@ class Window : public QWidget
 
 public:
     Window(QWidget *parent = nullptr);
-    virtual void mouseMoveEvent(QMouseEvent *event)override;
+//    virtual void mouseMoveEvent(QMouseEvent *event)override;
     virtual bool event(QEvent *event)override;
     ~Window();
 
 private:
-    QLabel *_label;
+    Label *_label;
+    Button *_button;
 };
 #endif // WINDOW_H

@@ -10,7 +10,7 @@ class Label : public QLabel
 public:
     Label(QWidget *parent = nullptr);
 
-    virtual void mouseMoveEvent(QMouseEvent *event)override;
+//    virtual void mouseMoveEvent(QMouseEvent *event)override;
     virtual bool event(QEvent *e)override;
 
 signals:

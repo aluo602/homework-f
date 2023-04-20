@@ -6,17 +6,16 @@
 Label::Label(QWidget *parent)
     :QLabel(parent)
 {
-    setText("event handing");
     setBackgroundRole(QPalette::Dark);
     setAutoFillBackground(true);
 }
 
-void Label::mouseMoveEvent(QMouseEvent *event)
-{
-//    move(event->scenePosition().toPoint());
+//void Label::mouseMoveEvent(QMouseEvent *event)
+//{
+////    move(event->scenePosition().toPoint());
 
-    qDebug() << "move in" << " Label::mouseMoveEvent.";
-}
+//    qDebug() << "move in" << " Label::mouseMoveEvent.";
+//}
 
 bool Label::event(QEvent *e)
 {
