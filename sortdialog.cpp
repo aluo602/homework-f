@@ -33,11 +33,10 @@ void SortDialog::setColumnRange(QChar first, QChar last)
         ui->secondaryColumnCombo->sizeHint());
 
     QChar ch = first;
-    // QChar在编译时会报错，如果用qmake命令而不用qmake6就没问题，是Qt6升级的新问题，暂时我没找到解决方法
     while (ch <= last) {
         ui->primaryColumnCombo->addItem(QString(ch));
         ui->secondaryColumnCombo->addItem(QString(ch));
         ui->tertiaryColumnCombo->addItem(QString(ch));
-        ch = ch.unicode() + 1;
+        ch.unicode() = ch.unicode() + 1;
     }
 }
